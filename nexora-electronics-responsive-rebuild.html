@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXORA — Electronics Store Demo</title>
+<meta name="description" content="NEXORA fictional electronics ecommerce demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1558e8;--navy:#07152f;--ink:#111827;--muted:#667085;--bg:#f5f7fa;--line:#e4e8ef;--white:#fff;--green:#07965e;--red:#e5484d}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden}a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}img{display:block;width:100%;height:100%;object-fit:contain}::selection{background:var(--blue);color:#fff}
+.topbar{height:34px;background:var(--navy);color:#dce7ff;display:flex;align-items:center;justify-content:center;padding:0 12px;font-size:10px;text-align:center}.topbar b{color:#79a5ff}
+.header{position:sticky;top:0;z-index:40;background:#fff;box-shadow:0 1px 0 #0000000a}.mainnav{height:72px;padding:0 5vw;display:grid;grid-template-columns:175px minmax(220px,1fr) auto;gap:25px;align-items:center}.logo{font-family:"Space Grotesk";font-size:25px;font-weight:700;letter-spacing:-.08em}.logo span{color:var(--blue)}.search{height:43px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;padding:0 13px;color:#8993a5;font-size:16px}.search input{border:0;outline:0;background:transparent;min-width:0;width:100%;padding-left:9px;font-size:12px}.actions{display:flex;align-items:center;gap:18px;font-size:10px;white-space:nowrap}.action{background:none;border:0;color:var(--ink)}.cart{position:relative}.cart-badge{position:absolute;right:-10px;top:-10px;width:18px;height:18px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:9px}.mobile-menu{display:none}.catbar{height:44px;border-block:1px solid var(--line);display:flex;align-items:center;gap:27px;padding:0 5vw;overflow-x:auto;scrollbar-width:none;white-space:nowrap}.catbar::-webkit-scrollbar{display:none}.catbar a{font-size:10px;font-weight:600;color:#475467}.catbar a:hover{color:var(--blue)}
+.hero{margin:18px 5vw;border-radius:15px;overflow:hidden;min-height:500px;display:grid;grid-template-columns:1.05fr .95fr;background:linear-gradient(115deg,#06183b,#0b48b9 65%,#2678ff);color:#fff}.hero-copy{padding:65px 7vw;display:flex;flex-direction:column;justify-content:center}.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:9px;color:#abc5ff}.hero h1{font-family:"Space Grotesk";font-size:clamp(52px,6.7vw,88px);line-height:.9;letter-spacing:-.075em;margin:18px 0}.hero p{max-width:450px;color:#d6e2ff;font-size:13px;line-height:1.75}.hero-btn{display:inline-flex;align-items:center;justify-content:center;width:max-content;margin-top:28px;background:#fff;color:#0845b5;border-radius:6px;padding:14px 20px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.hero-btn:hover{background:#dce8ff}.hero-image{min-height:500px;padding:35px;display:flex;align-items:center;justify-content:center}.hero-image img{filter:drop-shadow(0 30px 25px #00143d55)}
+.section{padding:72px 5vw}.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:28px}.section-head h2{font-family:"Space Grotesk";font-size:35px;letter-spacing:-.055em}.section-head p{font-size:11px;color:var(--muted)}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.category{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;transition:.2s}.category:hover{transform:translateY(-3px);box-shadow:0 12px 25px #10254a0c;border-color:#bfd0f8}.category-img{height:115px}.category h3{font-size:12px;margin-top:9px}.category small{font-size:8px;color:#8993a3;display:block;margin-top:4px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:9px;overflow:hidden;min-width:0;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 15px 30px #17213b10}.product-img{height:270px;padding:15px;position:relative}.product-img img{transition:.35s}.card:hover .product-img img{transform:scale(1.04)}.offer{position:absolute;top:11px;left:11px;z-index:2;background:#e8f7f0;color:var(--green);font-size:8px;font-weight:800;padding:5px 7px;border-radius:4px}.heart{position:absolute;right:10px;top:10px;z-index:3;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:#fff;color:#697386;font-size:15px}.heart.active{color:var(--red)}.product-body{border-top:1px solid #f0f2f5;padding:14px}.brand{font-size:8px;color:#8b95a5;text-transform:uppercase;letter-spacing:.1em}.product-body h3{font-size:14px;line-height:1.4;margin:6px 0}.rating{font-size:9px;color:#f59e0b}.rating span{color:#8b95a5}.price{font-size:19px;font-weight:800;letter-spacing:-.04em;margin-top:9px}.mrp{font-size:9px;color:#9ba3b1;text-decoration:line-through;font-weight:400;margin-left:4px}.discount{font-size:9px;color:var(--green);margin-left:4px}.delivery{font-size:8px;color:#657083;margin-top:8px}.add{width:100%;margin-top:12px;border:0;border-radius:5px;padding:11px 7px;background:#edf3ff;color:var(--blue);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.add:hover{background:var(--blue);color:#fff}
+.deals{background:var(--navy);color:#fff;border-radius:13px;padding:35px;display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:center}.deals h2{font-family:"Space Grotesk";font-size:44px;line-height:.95;letter-spacing:-.07em}.deals p{font-size:10px;line-height:1.7;color:#aebbd3;margin-top:12px}.timer{display:flex;gap:8px;margin-top:20px}.time{min-width:52px;padding:10px 7px;border:1px solid #274474;background:#10254b;border-radius:5px;text-align:center}.time b{display:block;font-size:18px}.time span{font-size:7px;color:#8093b5;text-transform:uppercase}.deal-products{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.mini{background:#fff;color:var(--ink);border-radius:8px;padding:11px}.mini-img{height:125px}.mini h3{font-size:10px;margin-top:7px}.mini b{display:block;font-size:13px;margin-top:5px}
+.brandbar{background:#fff;border-block:1px solid var(--line);padding:35px 5vw}.brands{display:flex;justify-content:space-between;align-items:center;gap:25px;flex-wrap:wrap;color:#9aa3b1;font-family:"Space Grotesk";font-weight:700;font-size:19px}.brands span:hover{color:var(--blue)}
+.banner{display:grid;grid-template-columns:1fr 1fr;min-height:390px;background:#e8f0ff;border-radius:13px;overflow:hidden}.banner-copy{padding:55px 7vw;display:flex;justify-content:center;flex-direction:column}.banner-copy small{color:var(--blue);font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.16em}.banner h2{font-family:"Space Grotesk";font-size:50px;line-height:.92;letter-spacing:-.075em;margin:14px 0}.banner p{max-width:400px;color:#65728a;font-size:11px;line-height:1.75}.banner-image{min-height:390px}.banner-image img{object-fit:cover}
+.features{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-block:1px solid var(--line)}.feature{padding:38px 25px;border-right:1px solid var(--line)}.feature:last-child{border:0}.feature-icon{font-size:22px;color:var(--blue)}.feature h3{font-size:13px;margin:13px 0 7px}.feature p{font-size:10px;color:#778195;line-height:1.7}
+.news{background:#fff;padding:62px 5vw;display:flex;justify-content:space-between;align-items:center;gap:35px}.news h2{font-family:"Space Grotesk";font-size:34px;letter-spacing:-.06em}.news p{font-size:10px;color:#778195;margin-top:6px}.form{height:45px;display:flex;border:1px solid var(--line);border-radius:6px;min-width:430px}.form input{border:0;outline:0;min-width:0;flex:1;padding:0 13px;font-size:11px}.form button{background:var(--blue);color:#fff;padding:0 18px;border:0;font-size:9px;font-weight:800;text-transform:uppercase}
+footer{background:var(--navy);color:#e6edf9;padding:55px 5vw 20px}.footgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:45px;padding-bottom:50px}.flogo{font-family:"Space Grotesk";font-size:29px;font-weight:700;letter-spacing:-.08em}.flogo span{color:#77a5ff}.foot p{max-width:320px;color:#8c9ab2;font-size:10px;line-height:1.8;margin-top:13px}.foot h4{font-size:9px;text-transform:uppercase;letter-spacing:.16em;margin-bottom:17px}.foot a{display:block;color:#9ba9c0;font-size:10px;margin:10px 0}.foot a:hover{color:#fff}.copyright{border-top:1px solid #213354;padding-top:18px;display:flex;justify-content:space-between;color:#687994;font-size:8px;text-transform:uppercase;letter-spacing:.1em}
+.cartpanel{position:fixed;z-index:100;top:0;right:-440px;width:410px;max-width:100%;height:100dvh;background:#fff;box-shadow:-15px 0 45px #0002;transition:.4s;padding:25px;display:flex;flex-direction:column}.cartpanel.open{right:0}.carttop{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:17px}.carttop h3{font-family:"Space Grotesk";font-size:21px}.close{border:0;background:none;font-size:25px}.cartitems{flex:1;overflow:auto;padding:18px 0;color:#697386;font-size:11px}.empty{text-align:center;margin-top:90px}.total{border-top:1px solid var(--line);padding-top:17px}.totalrow{display:flex;justify-content:space-between;font-size:13px;margin-bottom:15px}.checkout{width:100%;padding:15px;border:0;border-radius:5px;background:#25d366;color:#fff;font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.overlay{display:none;position:fixed;inset:0;background:#07152f66;z-index:90}.overlay.show{display:block}
+@media(max-width:1100px){
+.mainnav{padding:0 3vw;grid-template-columns:155px minmax(180px,1fr) auto;gap:15px}.catbar{padding:0 3vw}.hero{margin:14px 3vw}.section{padding:60px 3vw}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(3,1fr)}.products .card:nth-child(4){display:none}.deals{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.feature:nth-child(2){border-right:0}.feature:nth-child(3),.feature:nth-child(4){border-top:1px solid var(--line)}
+}
+@media(max-width:800px){
+.topbar{font-size:8px}.mainnav{height:64px;grid-template-columns:auto 1fr auto;padding:0 4vw}.logo{font-size:22px}.search{height:40px}.actions .account,.actions .wishlist{display:none}.mobile-menu{display:block;border:1px solid var(--line);border-radius:5px;background:#fff;padding:8px 9px;font-size:9px}.catbar{height:42px;padding:0 4vw;gap:22px}.catbar a{font-size:9px}
+.hero{display:flex;flex-direction:column;margin:10px 3vw;min-height:0}.hero-copy{padding:48px 8vw 42px}.hero h1{font-size:clamp(52px,13vw,72px)}.hero p{font-size:12px}.hero-image{height:350px;min-height:0;padding:18px}
+.section{padding:55px 4vw}.section-head{display:block;margin-bottom:23px}.section-head h2{font-size:30px}.section-head p{margin-top:7px}.categories{grid-template-columns:repeat(3,1fr);gap:9px}.category{padding:9px 6px}.category-img{height:90px}.category h3{font-size:10px}.category small{font-size:7px}
+.products{grid-template-columns:repeat(2,1fr);gap:10px}.products .card:nth-child(4){display:block}.product-img{height:235px;padding:10px}.product-body{padding:11px}.product-body h3{font-size:12px}.price{font-size:16px}.delivery{font-size:8px}.add{font-size:8px;padding:10px 5px}
+.deals{padding:25px 18px}.deals h2{font-size:38px}.deal-products{grid-template-columns:repeat(3,1fr);gap:8px}.mini{padding:8px}.mini-img{height:95px}.mini h3{font-size:8px}.mini b{font-size:10px}
+.brands{justify-content:center;font-size:16px}.banner{grid-template-columns:1fr}.banner-copy{padding:45px 8vw}.banner h2{font-size:42px}.banner-image{height:320px;min-height:0}.news{display:block;padding:50px 5vw}.form{width:100%;min-width:0;margin-top:22px}.footgrid{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media(max-width:520px){
+.topbar{height:30px;font-size:7px}.mainnav{grid-template-columns:auto auto;justify-content:space-between}.search{display:none}.actions{gap:12px}.mobile-menu{order:-1}.catbar{gap:20px}
+.hero-copy{padding:42px 7vw}.hero h1{font-size:55px}.hero-image{height:285px}.hero-btn{font-size:8px;padding:13px 16px}
+.section{padding:48px 4vw}.categories{grid-template-columns:repeat(2,1fr);gap:8px}.category-img{height:110px}.product-img{height:195px;padding:8px}.product-body{padding:9px}.brand{font-size:7px}.product-body h3{font-size:10.5px;min-height:30px}.rating{font-size:8px}.price{font-size:14px}.mrp,.discount{font-size:7px}.delivery{font-size:7px}.add{font-size:7px;padding:9px 3px}.heart{width:27px;height:27px;font-size:13px}.offer{font-size:7px;padding:4px 6px}
+.deal-products{grid-template-columns:1fr}.mini{display:grid;grid-template-columns:75px 1fr;gap:10px;align-items:center}.mini-img{height:75px}.timer{gap:5px}.time{min-width:47px}.brands span{font-size:14px}.banner h2{font-size:38px}.banner-image{height:260px}.features{grid-template-columns:1fr}.feature{border-right:0!important;border-bottom:1px solid var(--line)}.feature:last-child{border-bottom:0}
+.news h2{font-size:29px}.form{height:43px}.form button{padding:0 13px}.footgrid{grid-template-columns:1fr 1fr;gap:28px 18px}.flogo{font-size:24px}.copyright{flex-direction:column;gap:10px}.cartpanel{width:100%;padding:20px}
+}
+@media(max-width:360px){.logo{font-size:19px}.actions{font-size:9px}.hero h1{font-size:48px}.product-img{height:175px}.categories{gap:6px}.category-img{height:95px}}
+</style>
+</head>
+<body>
+<div class="topbar">⚡ <b>MEGA ELECTRONICS SALE</b> — Up to 45% off selected TVs, mobiles & appliances · Free delivery on eligible orders</div>
+
+<header class="header">
+<nav class="mainnav">
+<a class="logo" href="#">NEX<span>O</span>RA</a>
+<div class="search">⌕ <input id="search" type="search" placeholder="Search TVs, mobiles, refrigerators..." aria-label="Search products"></div>
+<div class="actions">
+<button class="action account">♙ Account</button><button class="action wishlist">♡ Wishlist</button>
+<button class="action cart" id="openCart">🛒 Bag <span class="cart-badge" id="count">0</span></button>
+<button class="mobile-menu" id="mobileMenu">Menu</button>
+</div>
+</nav>
+<div class="catbar"><a href="#shop">All</a><a href="#tv">Televisions</a><a href="#mobiles">Mobiles</a><a href="#appliances">Appliances</a><a href="#laptops">Laptops</a><a href="#audio">Audio</a><a href="#accessories">Accessories</a><a href="#deals">Deals</a></div>
+</header>
+
+<main>
+<section class="hero">
+<div class="hero-copy"><div class="eyebrow">Next generation electronics · Demo store</div><h1>Tech that<br>fits your <span style="color:#9fc0ff">life.</span></h1><p>Smart entertainment, powerful devices and modern appliances — all presented in a responsive electronics ecommerce experience.</p><a class="hero-btn" href="#shop">Shop electronics →</a></div>
+<div class="hero-image"><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=1300&q=85" alt="Modern smart television"></div>
+</section>
+
+<section class="section" id="shop">
+<div class="section-head"><h2>Shop by category</h2><p>Everything for your connected home.</p></div>
+<div class="categories">
+<a class="category" href="#tv"><div class="category-img"><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Televisions</h3><small>120+ products</small></a>
+<a class="category" href="#mobiles"><div class="category-img"><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Mobiles</h3><small>250+ products</small></a>
+<a class="category" href="#appliances"><div class="category-img"><img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Refrigerators</h3><small>80+ products</small></a>
+<a class="category" href="#appliances"><div class="category-img"><img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Washing Machines</h3><small>65+ products</small></a>
+<a class="category" href="#laptops"><div class="category-img"><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Laptops</h3><small>140+ products</small></a>
+<a class="category" href="#audio"><div class="category-img"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Audio</h3><small>190+ products</small></a>
+</div>
+</section>
+
+<section class="section" id="tv">
+<div class="section-head"><h2>Trending electronics</h2><p>Popular picks across the store.</p></div>
+<div class="products" id="productGrid">
+<article class="card product" data-name="55 inch 4K QLED Smart TV"><div class="product-img"><span class="offer">18% OFF</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=900&q=85" alt="55 inch 4K QLED Smart TV"></div><div class="product-body"><span class="brand">Nexora Vision</span><h3>55" 4K QLED Smart TV</h3><div class="rating">★ 4.7 <span>(1,284)</span></div><div class="price">₹42,990 <span class="mrp">₹51,990</span><span class="discount">18% off</span></div><div class="delivery">✓ Free delivery · Tomorrow</div><button class="add" data-product='55" 4K QLED Smart TV' data-price="42990">Add to bag</button></div></article>
+<article class="card product" data-name="Pro X5 5G Smartphone"><div class="product-img"><span class="offer">New</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=85" alt="Pro X5 5G smartphone"></div><div class="product-body"><span class="brand">Nexora Mobile</span><h3>Pro X5 5G · 256GB</h3><div class="rating">★ 4.8 <span>(946)</span></div><div class="price">₹34,999 <span class="mrp">₹39,999</span><span class="discount">12% off</span></div><div class="delivery">✓ Free delivery · Tomorrow</div><button class="add" data-product="Pro X5 5G · 256GB" data-price="34999">Add to bag</button></div></article>
+<article class="card product" data-name="650L French Door Refrigerator"><div class="product-img"><span class="offer">22% OFF</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=900&q=85" alt="650L refrigerator"></div><div class="product-body"><span class="brand">Nexora Home</span><h3>650L French Door Refrigerator</h3><div class="rating">★ 4.6 <span>(522)</span></div><div class="price">₹68,490 <span class="mrp">₹87,990</span><span class="discount">22% off</span></div><div class="delivery">✓ Free installation</div><button class="add" data-product="650L French Door Refrigerator" data-price="68490">Add to bag</button></div></article>
+<article class="card product" data-name="14 Pro Laptop OLED"><div class="product-img"><span class="offer">15% OFF</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85" alt="14 inch OLED laptop"></div><div class="product-body"><span class="brand">Nexora Pro</span><h3>14" Pro Laptop · OLED</h3><div class="rating">★ 4.9 <span>(718)</span></div><div class="price">₹79,990 <span class="mrp">₹94,990</span><span class="discount">15% off</span></div><div class="delivery">✓ Free delivery · Tomorrow</div><button class="add" data-product='14" Pro Laptop · OLED' data-price="79990">Add to bag</button></div></article>
+</div>
+</section>
+
+<section class="section" id="deals">
+<div class="deals">
+<div><h2>Midnight<br>mega deals.</h2><p>Limited-time fictional offers on selected electronics.</p><div class="timer"><div class="time"><b>08</b><span>Hours</span></div><div class="time"><b>42</b><span>Min</span></div><div class="time"><b>19</b><span>Sec</span></div></div></div>
+<div class="deal-products">
+<div class="mini"><div class="mini-img"><img src="https://images.unsplash.com/photo-1601944179066-29786cb9d32a?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>65" 4K OLED TV</h3><b>₹74,990</b></div>
+<div class="mini"><div class="mini-img"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Smart Phone Ultra</h3><b>₹49,990</b></div>
+<div class="mini"><div class="mini-img"><img src="https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=500&q=80" alt=""></div><h3>Smart Home Hub</h3><b>₹7,990</b></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="mobiles">
+<div class="section-head"><h2>Mobiles & gadgets</h2><p>Devices for every budget.</p></div>
+<div class="products">
+<article class="card product" data-name="Edge 12 5G Smartphone"><div class="product-img"><span class="offer">Best seller</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=900&q=85" alt="Edge 12 smartphone"></div><div class="product-body"><span class="brand">Nexora Mobile</span><h3>Edge 12 5G · 128GB</h3><div class="rating">★ 4.5 <span>(2,109)</span></div><div class="price">₹24,999 <span class="mrp">₹29,999</span><span class="discount">17% off</span></div><div class="delivery">✓ Free delivery</div><button class="add" data-product="Edge 12 5G · 128GB" data-price="24999">Add to bag</button></div></article>
+<article class="card product" data-name="Studio ANC Wireless Headphones"><div class="product-img"><span class="offer">31% OFF</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85" alt="Wireless headphones"></div><div class="product-body"><span class="brand">Nexora Audio</span><h3>Studio ANC Headphones</h3><div class="rating">★ 4.7 <span>(1,763)</span></div><div class="price">₹6,899 <span class="mrp">₹9,999</span><span class="discount">31% off</span></div><div class="delivery">✓ Free delivery</div><button class="add" data-product="Studio ANC Headphones" data-price="6899">Add to bag</button></div></article>
+<article class="card product" data-name="Smart Watch Series 4"><div class="product-img"><span class="offer">24% OFF</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" alt="Smart watch"></div><div class="product-body"><span class="brand">Nexora Wear</span><h3>Smart Watch Series 4</h3><div class="rating">★ 4.6 <span>(835)</span></div><div class="price">₹7,599 <span class="mrp">₹9,999</span><span class="discount">24% off</span></div><div class="delivery">✓ Free delivery</div><button class="add" data-product="Smart Watch Series 4" data-price="7599">Add to bag</button></div></article>
+<article class="card product" data-name="Pro Tablet 11 inch"><div class="product-img"><span class="offer">12% OFF</span><button class="heart">♡</button><img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&w=900&q=85" alt="Pro tablet"></div><div class="product-body"><span class="brand">Nexora Pro</span><h3>Pro Tablet 11" · 256GB</h3><div class="rating">★ 4.8 <span>(421)</span></div><div class="price">₹31,990 <span class="mrp">₹35,990</span><span class="discount">12% off</span></div><div class="delivery">✓ Free delivery</div><button class="add" data-product='Pro Tablet 11" · 256GB' data-price="31990">Add to bag</button></div></article>
+</div>
+</section>
+
+<div class="brandbar"><div class="brands"><span>SONIQ</span><span>VOLTIS</span><span>ORBIT</span><span>PIXELIA</span><span>NEXORA</span><span>AURON</span></div></div>
+
+<section class="section" id="appliances">
+<div class="banner"><div class="banner-copy"><small>Smart home collection</small><h2>Upgrade<br>every room.</h2><p>From cooling and laundry to kitchen essentials, bring smarter technology into everyday routines.</p><a class="hero-btn" style="background:var(--blue);color:#fff" href="#shop">Explore appliances →</a></div><div class="banner-image"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1400&q=85" alt="Modern smart kitchen"></div></div>
+</section>
+
+<div class="features">
+<div class="feature"><div class="feature-icon">✓</div><h3>Genuine products</h3><p>Structured product cards for brand, rating, pricing, discount and delivery information.</p></div>
+<div class="feature"><div class="feature-icon">↺</div><h3>Easy returns</h3><p>A reassurance section designed to reduce purchase friction.</p></div>
+<div class="feature"><div class="feature-icon">⚡</div><h3>Fast delivery</h3><p>Show estimated delivery and installation information close to the price.</p></div>
+<div class="feature"><div class="feature-icon">♧</div><h3>Secure payments</h3><p>Ready for UPI, cards, wallets and EMI integration in a real store.</p></div>
+</div>
+
+<section class="news"><div><h2>Get the tech drop.</h2><p>New products, price drops and store offers.</p></div><form class="form" onsubmit="event.preventDefault();this.querySelector('input').value='Subscribed ✓'"><input type="email" placeholder="Enter your email" required><button>Subscribe</button></form></section>
+</main>
+
+<footer class="foot">
+<div class="footgrid"><div><div class="flogo">NEX<span>O</span>RA</div><p>Fictional electronics ecommerce demo. Replace the brand, products, prices, imagery, policies and contact details before publishing.</p></div><div><h4>Shop</h4><a href="#tv">Televisions</a><a href="#mobiles">Mobiles</a><a href="#appliances">Appliances</a><a href="#laptops">Laptops</a></div><div><h4>Customer care</h4><a href="#">Track order</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Warranty</a></div><div><h4>Company</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Careers</a><a href="#">Store locator</a></div></div>
+<div class="copyright"><span>© 2026 Nexora Demo</span><span>Fictional store · Sample content · WhatsApp enquiry</span></div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="cartpanel" id="cartPanel">
+<div class="carttop"><h3>Your bag</h3><button class="close" id="closeCart">×</button></div>
+<div class="cartitems" id="cartItems"><div class="empty">Your bag is empty.<br><br>Add a product to see it here.</div></div>
+<div class="total"><div class="totalrow"><span>Subtotal</span><b id="total">₹0</b></div><button class="checkout" id="whatsappEnquiry">💬 Send Enquiry on WhatsApp</button></div>
+</aside>
+
+<script>
+const bag=[], panel=document.getElementById('cartPanel'), overlay=document.getElementById('overlay'), count=document.getElementById('count'), itemsEl=document.getElementById('cartItems'), total=document.getElementById('total');
+function openCart(){panel.classList.add('open');overlay.classList.add('show')}function closeCart(){panel.classList.remove('open');overlay.classList.remove('show')}
+document.getElementById('openCart').onclick=openCart;document.getElementById('closeCart').onclick=closeCart;overlay.onclick=closeCart;
+document.querySelectorAll('.add').forEach(btn=>btn.addEventListener('click',()=>{bag.push({name:btn.dataset.product,price:Number(btn.dataset.price)});renderCart();openCart()}));
+document.querySelectorAll('.heart').forEach(btn=>btn.addEventListener('click',()=>{btn.classList.toggle('active');btn.textContent=btn.classList.contains('active')?'♥':'♡'}));
+function renderCart(){count.textContent=bag.length;if(!bag.length){itemsEl.innerHTML='<div class="empty">Your bag is empty.<br><br>Add a product to see it here.</div>';total.textContent='₹0';return}
+itemsEl.innerHTML=bag.map((x,i)=>`<div style="padding:14px 0;border-bottom:1px solid #e4e8ef;display:flex;justify-content:space-between;gap:10px"><span>${x.name}</span><b>₹${x.price.toLocaleString('en-IN')} <button onclick="removeItem(${i})" style="border:0;background:none;margin-left:7px">×</button></b></div>`).join('');
+total.textContent='₹'+bag.reduce((sum,x)=>sum+x.price,0).toLocaleString('en-IN')}
+function removeItem(i){bag.splice(i,1);renderCart()}
+document.getElementById('whatsappEnquiry').onclick=()=>{if(!bag.length){alert('Please add a product first.');return}const list=bag.map((x,i)=>`${i+1}. ${x.name} — ₹${x.price.toLocaleString('en-IN')}`).join('\\n');const msg=`Hello NEXORA, I am interested in these products:\\n\\n${list}\\n\\nTotal shown: ₹${bag.reduce((a,x)=>a+x.price,0).toLocaleString('en-IN')}\\n\\nPlease share availability and final price.`;window.open('https://wa.me/919000000000?text='+encodeURIComponent(msg),'_blank')};
+document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();document.querySelectorAll('.product').forEach(p=>p.style.display=!q||p.dataset.name.toLowerCase().includes(q)?'':'none')});
+document.getElementById('mobileMenu').onclick=()=>document.querySelector('.catbar').scrollIntoView({behavior:'smooth',block:'center'});
+</script>
+</body>
+</html>
